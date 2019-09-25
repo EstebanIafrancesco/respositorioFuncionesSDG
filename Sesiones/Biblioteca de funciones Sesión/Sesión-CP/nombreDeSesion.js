@@ -16,3 +16,5 @@ function nombreDeSesion(executionContext){
     // Asignación de valor para nombre
     formContext.getAttribute("oap_name").setValue(nombreSesion);
 }
+
+// ***************************************************************************************************//

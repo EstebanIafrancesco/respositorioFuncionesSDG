@@ -86,3 +86,5 @@ function otro(executionContext){
     formContext.ui.tabs.get("Agenda Control Político").setVisible(false);
     formContext.ui.tabs.get("Asistencia Entidades Control Político").setVisible(false);
 }
+
+// ***************************************************************************************************//

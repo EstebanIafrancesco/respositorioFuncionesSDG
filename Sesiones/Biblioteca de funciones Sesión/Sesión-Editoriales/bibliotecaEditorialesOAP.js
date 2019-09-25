@@ -49,3 +49,4 @@
         //Control por consola
         console.log("La sesión " + sesion[0].name + " fue modificada por: " + propietario[0].name  + " el " + fechaModificacion);
     }
+// ***************************************************************************************************//
