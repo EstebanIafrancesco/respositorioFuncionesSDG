@@ -282,28 +282,83 @@ function orfeoRadicadoFinalDP() {
     }
 }
 
+//***************************************************************************************************//
+   function contextoBancada(executionContext){
+        let formContext = executionContext.getFormContext();
+        let concejal = formContext.getAttribute("oap_citante").getValue();
+        console.log("*******************************************************");
+        console.log(concejal);
+        console.log("*******************************************************");
+    }
+
 // ***************************************************************************************************//
 
+// ***************************************************************************************************//
+
+// Función para definir la Bancada según el Citante
+
+
+//  function partidoSegunAutor(executionContext){
+
+//     let formContext = executionContext.getFormContext();
+
+//     if(formContext.getAttribute("oap_citante").getValue() != undefined && formContext.getAttribute("oap_citante").getValue() != null ){
+        
+        
+//         let citante = formContext.getAttribute("oap_citante").getValue();
+//         // Control por consola
+//         console.log("*****************************");
+//         console.log(citante);
+//          console.log("*****************************");
+    
+//         if (citante != null && citante != "undefined"){
+//             //Control por consola
+//             console.log(citante[0].keyValues.coem_partido.value);
+//             formContext.getAttribute("oap_bancada").setValue(citante[0].keyValues.coem_partido.value);
+//             formContext.getControl("oap_bancada").setVisible(true);
+//             formContext.getControl("oap_bancada").setDisabled(true);
+//         }else{
+//             formContext.getAttribute("oap_bancada").setValue(null);
+//          formContext.getControl("oap_bancada").setVisible(false);
+//         }
+//     }
+//  }
+ 
+
+ // ***************************************************************************************************//
 // Función para definir la Bancada según el Citante
 
 function partidoSegunAutor(executionContext){
     let formContext = executionContext.getFormContext();
     let citante = formContext.getAttribute("oap_citante").getValue();
-    // Control por consola
-    console.log("*****************************");
     console.log(citante);
-    console.log("*****************************");
-    
-    if (citante != null){
-        //Control por consola
-        console.log(citante[0].keyValues.coem_partido.value);
-        formContext.getAttribute("oap_bancada").setValue(citante[0].keyValues.coem_partido.value);
-        formContext.getControl("oap_bancada").setVisible(true);
-        formContext.getControl("oap_bancada").setDisabled(true);
-    }else{
-        formContext.getAttribute("oap_bancada").setValue(null);
-        formContext.getControl("oap_bancada").setVisible(false);
+    if(citante != null){
+        if(citante[0].keyValues.coem_partido == undefined ){
+            console.log("+----------------------------------+");
+            console.log("| Valores desde formulario externo |");
+            console.log("+----------------------------------+");
+            formContext.getAttribute("oap_citante").setValue(null);
+            formContext.getAttribute("oap_bancada").setValue(null);
+            alert("Debe escoger valores desde el formulario principal ! ");
+        }else{
+            if(citante[0].keyValues.coem_partido != null){
+                console.log("KeyValues definidos !");
+                let partido = citante[0].keyValues.coem_partido.value;
+                console.log("+------------------------------+");
+                console.log("|" + partido + "                 |");
+                console.log("+------------------------------+");
+                formContext.getAttribute("oap_bancada").setValue(partido);
+                formContext.getControl("oap_bancada").setVisible(true);
+                formContext.getControl("oap_bancada").setDisabled(true);
+                }else{
+                    console.log("+------------------------------+");
+                    console.log("| Bancada sin valos asignado ! |");
+                    console.log("+------------------------------+");
+                    
+                    formContext.getAttribute("oap_bancada").setValue(null);
+                    formContext.getControl("oap_bancada").setVisible(false);
+                }
+        }
     }
  }
-
 // ***************************************************************************************************//
